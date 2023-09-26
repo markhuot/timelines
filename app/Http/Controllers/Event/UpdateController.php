@@ -14,6 +14,14 @@ class UpdateController extends Controller
             $event->end_at = now();
         }
 
+        if (($start_at_time=$request->string('start_at_time'))->isNotEmpty()) {
+            $event->start_at = $event->start_at->setTimeFromTimeString($start_at_time);
+        }
+
+        if (($end_at_time=$request->string('end_at_time'))->isNotEmpty()) {
+            $event->end_at = $event->end_at->setTimeFromTimeString($end_at_time);
+        }
+
         if ($name = $request->string('name')->toString()) {
             $event->name = $name;
         }

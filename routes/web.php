@@ -1,5 +1,14 @@
 <?php
 
+use App\Http\Controllers\Calendar\IndexController as Calendar;
+use App\Http\Controllers\Event\StoreController as StoreEvents;
+use App\Http\Controllers\Event\UpdateController as UpdateEvents;
+use App\Http\Controllers\Session\Destroy as Logout;
+use App\Http\Controllers\Session\StoreController as StoreSession;
+use App\Http\Controllers\Settings\IndexController as Settings;
+use App\Http\Controllers\User\LoginController as Login;
+use App\Http\Controllers\User\RegisterController as Register;
+use App\Http\Controllers\User\StoreController as StoreUser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +22,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Http\Controllers\Calendar\IndexController::class)->name('calendar.index');
-Route::post('events', \App\Http\Controllers\Event\StoreController::class)->name('events.store');
-Route::post('events/{event}', \App\Http\Controllers\Event\UpdateController::class)->name('events.update');
+Route::get('/', Calendar::class)->middleware('auth')->name('calendar.index');
+Route::post('events', StoreEvents::class)->middleware('auth')->name('events.store');
+Route::post('events/{event}', UpdateEvents::class)->middleware('auth')->name('events.update');
+
+Route::get('settings', Settings::class)->middleware('auth')->name('settings.index');
+
+Route::get('login', Login::class)->name('users.login');
+Route::post('login', StoreSession::class)->name('sessions.create');
+Route::get('register', Register::class)->name('users.register');
+Route::post('register', StoreUser::class)->name('users.store');
+Route::post('logout', Logout::class)->name('sessions.destroy');

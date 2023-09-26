@@ -8,10 +8,13 @@ export default {
         "./resources/**/*.vue",
     ],
     safelist: [
-        {pattern: /(bg|text)-./}
+        {pattern: /(bg|text)-./, variants: ['dark']}
     ],
     theme: {
         extend: {
+            backgroundImage: {
+                'gradient-dash': "linear-gradient(to bottom, transparent var(--tw-gradient-to-position), var(--tw-gradient-to) var(--tw-gradient-to-position));",
+            },
             textShadow: {
                 inset: '0 -1px 1px var(--tw-shadow-color)',
                 sm: '0 1px 2px var(--tw-shadow-color)',

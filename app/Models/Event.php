@@ -47,6 +47,6 @@ class Event extends Model
 
     public function durationForHumans()
     {
-        return $this->start_at->diffAsCarbonInterval($this->end_at)->forHumans();
+        return $this->start_at->diffAsCarbonInterval($this->end_at)->forHumans(true, true);
     }
 }

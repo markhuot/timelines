@@ -1,3 +1,13 @@
+body {
+    --bg: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --bg: rgb(15 23 42);
+    }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
